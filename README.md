@@ -1,0 +1,3 @@
+# Vaadin apartments
+
+Admin panel
