@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -31,16 +32,21 @@ public class ApartmentService {
         if (response == null) {
             throw new RuntimeException("Cannot fetch apartments");
         }
-        return mapper.convertValue(response, new TypeReference<>() {
+        List<ApartmentResponse> convertedResponse = mapper.convertValue(response, new TypeReference<>() {
         });
+        return convertedResponse.stream()
+                .map(Apartment::from)
+                .collect(Collectors.toList());
     }
 
     public void save(Apartment apartment) {
-        restTemplate.postForEntity(URL, apartment, Object.class);
+        ApartmentRequest request = ApartmentRequest.from(apartment);
+        restTemplate.postForEntity(URL, request, Object.class);
     }
 
     public void update(Apartment apartment) {
-        restTemplate.put(URL, apartment);
+        ApartmentRequest request = ApartmentRequest.from(apartment);
+        restTemplate.put(URL, request);
     }
 
     public void delete(Long id) {

@@ -8,7 +8,7 @@ import com.vaadin.flow.router.Route;
 
 import javax.annotation.security.PermitAll;
 
-@Route(value = "dashboard", layout = MainLayout.class)
+@Route(value = "", layout = MainLayout.class)
 @PageTitle("Dashboard | AP")
 @PermitAll
 public class DashboardView extends VerticalLayout {

@@ -4,7 +4,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UINotifications {

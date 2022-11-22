@@ -1,7 +1,8 @@
 package com.apartments.ui.views;
 
 import com.apartments.security.SecurityService;
-import com.apartments.ui.views.list.ApartmentsView;
+import com.apartments.ui.views.apartments.ApartmentsView;
+import com.apartments.ui.views.notifications.NotificationsView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -39,12 +40,16 @@ public class MainLayout extends AppLayout {
     }
 
     private void createDrawer() {
-        RouterLink listLink = new RouterLink("Apartamenty", ApartmentsView.class);
-        listLink.setHighlightCondition(HighlightConditions.sameLocation());
+        RouterLink apartmentsLink = new RouterLink("Apartamenty", ApartmentsView.class);
+        RouterLink notificationsLink = new RouterLink("Notyfikacje", NotificationsView.class);
+
+        apartmentsLink.setHighlightCondition(HighlightConditions.sameLocation());
+        notificationsLink.setHighlightCondition(HighlightConditions.sameLocation());
 
         addToDrawer(new VerticalLayout(
-                listLink,
-                new RouterLink("Dashboard", DashboardView.class)
+                new RouterLink("Dashboard", DashboardView.class),
+                apartmentsLink,
+                notificationsLink
         ));
     }
 }

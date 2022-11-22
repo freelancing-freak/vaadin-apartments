@@ -1,4 +1,4 @@
-package com.apartments.ui.views.list;
+package com.apartments.ui.views.apartments;
 
 import com.apartments.service.apartments.Apartment;
 import com.vaadin.flow.component.ComponentEvent;

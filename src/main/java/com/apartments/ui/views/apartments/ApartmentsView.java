@@ -1,4 +1,4 @@
-package com.apartments.ui.views.list;
+package com.apartments.ui.views.apartments;
 
 import com.apartments.service.apartments.ApartmentService;
 import com.apartments.service.apartments.Apartment;
@@ -21,7 +21,7 @@ import java.util.Objects;
 
 @Component
 @Scope("prototype")
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "apartments", layout = MainLayout.class)
 @PageTitle("Apartamenty | AP")
 @PermitAll
 public class ApartmentsView extends VerticalLayout {
