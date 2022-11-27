@@ -3,6 +3,7 @@ package com.apartments.service.apartments;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,15 +43,19 @@ public class ApartmentRequest {
 
     private static void setImages(Apartment apartment, ApartmentRequest request) {
         List<String> images = new LinkedList<>();
-        images.add(apartment.getImage1());
-        images.add(apartment.getImage2());
-        images.add(apartment.getImage3());
-        images.add(apartment.getImage4());
-        images.add(apartment.getImage5());
-        images.add(apartment.getImage6());
-        images.add(apartment.getImage7());
-        images.add(apartment.getImage8());
-        images.add(apartment.getImage9());
+        if (isNotNullAndBlank(apartment.getImage1())) images.add(apartment.getImage1());
+        if (isNotNullAndBlank(apartment.getImage2())) images.add(apartment.getImage2());
+        if (isNotNullAndBlank(apartment.getImage3())) images.add(apartment.getImage3());
+        if (isNotNullAndBlank(apartment.getImage4())) images.add(apartment.getImage4());
+        if (isNotNullAndBlank(apartment.getImage5())) images.add(apartment.getImage5());
+        if (isNotNullAndBlank(apartment.getImage6())) images.add(apartment.getImage6());
+        if (isNotNullAndBlank(apartment.getImage7())) images.add(apartment.getImage7());
+        if (isNotNullAndBlank(apartment.getImage8())) images.add(apartment.getImage8());
+        if (isNotNullAndBlank(apartment.getImage9())) images.add(apartment.getImage9());
         request.setImages(images);
+    }
+
+    private static boolean isNotNullAndBlank(String image) {
+        return image != null && !Strings.isBlank(image);
     }
 }
