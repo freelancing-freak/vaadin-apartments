@@ -18,7 +18,7 @@ public class NotificationService {
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
 
-    @Value("${url.apartments:#{'http://localhost:8080/api/admin-panel/notifications'}}")
+    @Value("${url.notifications:#{'http://localhost:8080/api/admin-panel/notifications'}}")
     private String URL;
 
     public List<Notification> findAll(String filterText) {
