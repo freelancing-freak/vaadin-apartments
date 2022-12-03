@@ -2,6 +2,7 @@ package com.apartments.security;
 
 import com.apartments.ui.views.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,8 +19,8 @@ public class SecurityConfig extends VaadinWebSecurity {
 
     private static class ApartmentsInMemoryUserDetailsManager extends InMemoryUserDetailsManager {
 
-        public ApartmentsInMemoryUserDetailsManager() {
-            createUser(new User("user", "{noop}user", Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"))));
+        public ApartmentsInMemoryUserDetailsManager(String username, String password) {
+            createUser(new User(username, "{noop}" + password, Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"))));
         }
     }
 
@@ -33,7 +34,8 @@ public class SecurityConfig extends VaadinWebSecurity {
     }
 
     @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        return new ApartmentsInMemoryUserDetailsManager();
+    public InMemoryUserDetailsManager userDetailsService(@Value("${admin.username}") String username,
+                                                         @Value("${admin.password}") String password) {
+        return new ApartmentsInMemoryUserDetailsManager(username, password);
     }
 }

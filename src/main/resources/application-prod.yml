@@ -1,3 +1,7 @@
 url:
   apartments: https://apartments-prod.herokuapp.com/api/admin-panel/apartments
   notifications: https://apartments-prod.herokuapp.com/api/admin-panel/notifications
+
+admin:
+  username: admin
+  password: admin

@@ -1,2 +1,6 @@
 server:
   port: ${PORT:8081}
+
+admin:
+  username: admin
+  password: admin
