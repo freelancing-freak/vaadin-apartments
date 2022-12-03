@@ -2,6 +2,7 @@ package com.apartments.ui.views.apartments;
 
 import com.apartments.service.apartments.ApartmentService;
 import com.apartments.service.apartments.Apartment;
+import com.apartments.service.notifications.Notification;
 import com.apartments.ui.UINotifications;
 import com.apartments.ui.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
@@ -62,7 +63,20 @@ public class ApartmentsView extends VerticalLayout {
         grid.addClassNames("apartment-grid");
         grid.setSizeFull();
         grid.setColumns("id", "createdDate", "name", "location", "price");
-        grid.getColumns().forEach(col -> col.setAutoWidth(true));
+        grid.getColumns().forEach(col -> {
+            col.setAutoWidth(true);
+            setColHeader(col);
+        });
+    }
+
+    private void setColHeader(Grid.Column<Apartment> column) {
+        final String key = column.getKey();
+        switch (key) {
+            case "createdDate" -> column.setHeader("Data utworzenia");
+            case "name" -> column.setHeader("Imię");
+            case "location" -> column.setHeader("Lokalizacja");
+            case "price" -> column.setHeader("Cena");
+        }
     }
 
     private HorizontalLayout getToolbar() {

@@ -60,7 +60,18 @@ public class NotificationsView extends VerticalLayout {
         grid.addClassNames("notification-grid");
         grid.setSizeFull();
         grid.setColumns("id", "createdDate", "subject");
-        grid.getColumns().forEach(col -> col.setAutoWidth(true));
+        grid.getColumns().forEach(col -> {
+            col.setAutoWidth(true);
+            setColHeader(col);
+        });
+    }
+
+    private void setColHeader(Grid.Column<Notification> column) {
+        final String key = column.getKey();
+        switch (key) {
+            case "createdDate" -> column.setHeader("Data utworzenia");
+            case "subject" -> column.setHeader("Temat");
+        }
     }
 
     private HorizontalLayout getToolbar() {
